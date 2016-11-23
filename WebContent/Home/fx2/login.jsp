@@ -1,0 +1,77 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8" import="com.zhanwkj.fx2.model.*,java.util.*"%>
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport"
+	content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta name="format-detection" content="telephone=no" />
+<meta name="viewport" content="width=device-width, user-scalable=no" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+<title>完善信息-快租房管家平台</title>
+
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/Style/css/fxe.css" />
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/Style/css/page.css" />
+<link
+	href="${pageContext.request.contextPath}/Style/css/bootstrap.min.css"
+	rel="stylesheet">
+<script src="${pageContext.request.contextPath}/Style/js/jquery.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/Style/js/bootstrap.min.js"></script>
+
+<script
+	src="${pageContext.request.contextPath}/Style/js/jquery-1.8.3.min.js"></script>
+<script src="${pageContext.request.contextPath}/Manage/js/commom.js"></script>
+<script src="${pageContext.request.contextPath}/Style/js/logincheck.js"></script>
+</head>
+
+<body>
+	<!-- 引入全局头部文件 -->
+	<jsp:include page="/Home/include/top.jsp" />
+	<form action="${pageContext.request.contextPath }/Fx2/Login.do"
+		method="POST" onsubmit="return passx()">
+		<section class="addform">
+			<div class="th_form" style="text-align: center;">
+				<h1>快租房管家登陆个人中心</h1>
+			</div>
+			<br /> <br /> <br />
+			<table>
+				<tr>
+					<td class="TDleft">用户名：</td>
+					<td><input id="name" name="username" type="text" value=""
+						style="margin-left: 25px"></td>
+
+				</tr>
+			</table>
+			<font face="楷书" color="red" size="1px"><span id="resultofname"></span></font>
+			<table>
+				<tr>
+					<td class="TDleft">密码：</td>
+					<td><input id="pasw" name="password" type="password" value=""
+						style="margin-left: 25px"></td>
+
+
+				</tr>
+			</table>
+			<font face="楷书" color="red" size="1px"><span id="resultofpasw"></span></font>
+
+			<div class="foot_btn">
+				<input name="button"
+					style="color: #fff; text-align: center; float: left; background-color: red; width: 49.5%;"
+					type="submit" id="submitform" class="bl_button" value="登陆" /> <input
+					name="button"
+					style="color: #fff; text-align: center; float: right; background-color: red; width: 49.5%;"
+					type="reset" id="button" class="bl_button" value="重置" />
+			</div>
+			<div class="visible"></div>
+		</section>
+	</form>
+	<!-- 引入全局底部文件 -->
+	<jsp:include page="/Home/include/afbottom.jsp" />
+</body>
+</html>

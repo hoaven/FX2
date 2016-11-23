@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zhanwkj.fx2.dao.CollectMapper">
+	<resultMap id="BaseResultMap" type="com.zhanwkj.fx2.model.Collect">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="uid" property="uid" jdbcType="INTEGER" />
+		<result column="rentid" property="rentid" jdbcType="INTEGER" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, uid, rentid
+	</sql>
+
+	<!-- 主键条件查询 Select -->
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from fx_collect
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+
+	<!-- 主键条件删除 Delect -->
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from fx_collect
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	
+	<delete id="deleteByunio" parameterType="java.lang.Integer">
+		delete from fx_collect
+		where uid = #{fid,jdbcType=INTEGER} and rentid  = #{s,jdbcType=INTEGER}
+	</delete>
+
+	<!-- 无条件插入 Insert -->
+	<insert id="insert" parameterType="com.zhanwkj.fx2.model.Collect">
+		insert into fx_collect (id, uid, rentid
+		)
+		values (#{id,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER},
+		#{rentid,jdbcType=INTEGER}
+		)
+	</insert>
+
+	<!-- 选择性条件插入 insertSelective -->
+	<insert id="insertSelective" parameterType="com.zhanwkj.fx2.model.Collect">
+		insert into fx_collect
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="uid != null">
+				uid,
+			</if>
+			<if test="rentid != null">
+				rentid,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="uid != null">
+				#{uid,jdbcType=INTEGER},
+			</if>
+			<if test="rentid != null">
+				#{rentid,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+
+	<!-- 选择性条件主键修改 Update -->
+	<update id="updateByPrimaryKeySelective" parameterType="com.zhanwkj.fx2.model.Collect">
+		update fx_collect
+		<set>
+			<if test="uid != null">
+				uid = #{uid,jdbcType=INTEGER},
+			</if>
+			<if test="rentid != null">
+				rentid = #{rentid,jdbcType=INTEGER},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+
+	<!-- 主键条件修改 Update -->
+	<update id="updateByPrimaryKey" parameterType="com.zhanwkj.fx2.model.Collect">
+		update fx_collect
+		set uid = #{uid,jdbcType=INTEGER},
+		rentid = #{rentid,jdbcType=INTEGER}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+
+	<!-- 非主键条件查询 Select -->
+	<select id="selectByUidRentIs" resultType="java.lang.Integer"
+		parameterType="com.zhanwkj.fx2.utils.Query">
+		select count(id)
+		from
+		fx_collect
+		where uid=#{uid} and rentid=#{rid}
+
+	</select>
+	<select id="myCollect" parameterType="java.lang.Integer"
+		resultType="com.zhanwkj.fx2.model.Collect">
+		select
+		<include refid="Base_Column_List" />
+		from
+		fx_collect
+		where uid=#{uid}
+	</select>
+</mapper>

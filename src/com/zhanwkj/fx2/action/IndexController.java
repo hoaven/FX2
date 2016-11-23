@@ -1,0 +1,325 @@
+package com.zhanwkj.fx2.action;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.zhanwkj.fx2.api.WxBean;
+import com.zhanwkj.fx2.api.util.HttpUtil;
+import com.zhanwkj.fx2.constant.ApartType;
+import com.zhanwkj.fx2.dao.CollectMapper;
+import com.zhanwkj.fx2.dao.FansMapper;
+import com.zhanwkj.fx2.dao.SeeHouseMapper;
+import com.zhanwkj.fx2.model.Fans;
+import com.zhanwkj.fx2.model.FansWithBLOBs;
+import com.zhanwkj.fx2.model.RentHouse;
+import com.zhanwkj.fx2.service.RentHouseService;
+import com.zhanwkj.fx2.utils.HouseUtil;
+import com.zhanwkj.fx2.utils.MD5Utils;
+import com.zhanwkj.fx2.utils.Query;
+import com.zhanwkj.fx2.utils.ReadConfig;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+
+
+/**
+ * 
+ * @desc:系统逻辑控制层
+ * @author Chitry
+ * @className:IndexController
+ * @time:下午7:58:28
+ */
+@RequestMapping("Indez")
+@Controller
+public class IndexController{
+	@Autowired
+	FansMapper fansMapper;
+	@Autowired
+	SeeHouseMapper seeHouseMapper;
+	@Autowired
+	RentHouseService rentHouseService;
+	@Autowired
+	CollectMapper collectMapper;
+	
+	 
+	/**
+	 * 便民服务接口登入
+	 * @param request
+	 * @param response
+	 * @param session
+	 * @param id
+	 * @return
+	 * @throws IOException
+	 * @throws Exception
+	 */
+	@RequestMapping("login")
+	public String login(HttpServletRequest request, HttpServletResponse response,
+			HttpSession session,@RequestParam("id") String id) throws IOException, Exception{
+		String appid="KZ201512160001";
+		String secert="j87hgfre32a654fdre29k80765fred21";
+		long time=new Date().getTime()/1000;
+		System.out.println(time);
+		String key="C45RED342F56789HBVFR45342WQSED213";
+		String sign=MD5Utils.MD51(appid+secert+key+time);
+		System.out.println(sign);
+		String url = "http://test.iqiangquan.com/Inter/Index/getUserById?" +
+				"appid=" + appid+
+				"&secret=" +
+				secert+"&time=" + time+"&sign=" + sign+
+				"&id="+id;
+		response.sendRedirect(url);
+		
+		String json=HttpUtil.getUrl(url);
+		
+		System.out.println(json);
+		
+		
+		JSONObject jsonObject=JSONObject.fromObject(json);
+		String info=jsonObject.getString("info");
+		System.out.println(info);
+		JSONObject jsonObject1=JSONObject.fromObject(info);
+		String fromusername=jsonObject1.getString("fromusername");
+		
+		Fans f=  fansMapper.selectFansByPOpeniId(fromusername);
+		if(f==null){
+			Fans user=new Fans();
+			user.setTruename(jsonObject1.getString("username"));
+			user.setNickname(jsonObject1.getString("nickname"));
+			user.setMobile(jsonObject1.getString("phone"));
+			
+			user.setOpenid(jsonObject1.getString("fromusername"));
+			user.setSex(Integer.valueOf(jsonObject1.getString("sex")));
+			user.setProvince(jsonObject1.getString("province"));
+			user.setCity(jsonObject1.getString("city"));
+			user.setCountry(jsonObject1.getString("country"));
+			user.setHeadimgurl(jsonObject1.getString("headimgurl"));
+			user.setType("");
+			user.setIntegral(0);
+			
+			fansMapper.insertSelective(user);
+		}else{
+			f.setTruename(jsonObject1.getString("username"));
+			f.setNickname(jsonObject1.getString("nickname"));
+			f.setMobile(jsonObject1.getString("phone"));
+		}
+		
+		Fans user = new Fans();
+		user = fansMapper.selectFansByPOpeniId(fromusername);
+		session.setAttribute("user", user);
+
+		/**
+		 * 根据条件查出房源数据:查出15条记录，在Query.java中进行参数修改
+		 * 系统初始化的时候只进行住宅类房源数据的获取
+		 * 1.已通过审核
+		 * 2.已上架
+		 * 3.已绑定
+		 */
+		Query query = new Query();
+		query.setStatus(Integer.valueOf(1));
+		query.setStudio(Integer.valueOf(1));
+		query.setType(1);
+		List<RentHouse> zzHouse = new ArrayList<RentHouse>();
+		zzHouse = this.rentHouseService.selectQuery(query);
+		zzHouse =  HouseUtil.setRentHouses(zzHouse);
+		zzHouse = HouseUtil.setRentHousePic(zzHouse);//配置图片：一张
+
+		session.setAttribute("zzHouse", zzHouse);
+		return "forward:/Home/index.jsp";
+		
+	}
+
+
+	/**
+	 * 系统初始化入口
+	 * @param request
+	 * @param response
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping("index")
+	public String init(HttpServletRequest request, HttpServletResponse response, HttpSession session){
+		/**
+		 * 待修正为微信登陆
+		 */
+		//Fans user = new Fans();
+		//user = fansMapper.selectByPrimaryKey(34);
+		//session.setAttribute("user", user);
+		
+//		Fans user = new Fans();
+//		user = (Fans) session.getAttribute("user");
+
+		/**
+		 * 根据条件查出房源数据:查出15条记录，在Query.java中进行参数修改
+		 * 系统初始化的时候只进行住宅类房源数据的获取
+		 * 1.已通过审核
+		 * 2.已上架
+		 * 3.已绑定
+		 */
+	//	Query query = new Query();
+	//	query.setStatus(Integer.valueOf(1));
+	//	query.setStudio(Integer.valueOf(1));
+	//	query.setType(1);
+	//	List<RentHouse> zzHouse = new ArrayList<RentHouse>();
+	//	zzHouse = this.rentHouseService.selectQuery(query);
+	//	zzHouse =  HouseUtil.setRentHouses(zzHouse);
+	//	zzHouse = HouseUtil.setRentHousePic(zzHouse);//配置图片：一张
+
+	//	session.setAttribute("zzHouse", zzHouse);
+		return "forward:/Home/main.jsp";
+	}
+
+	
+	/**
+	 * 比赛专用入口
+	 */
+	
+	@RequestMapping("index2")
+	public String init2(HttpServletRequest request, HttpServletResponse response, HttpSession session){
+	
+	Fans user = new Fans();
+	user = fansMapper.selectByPrimaryKey(34);
+	session.setAttribute("user", user);
+	
+//	Fans user = new Fans();
+//	user = (Fans) session.getAttribute("user");
+
+	/**
+	 * 根据条件查出房源数据:查出15条记录，在Query.java中进行参数修改
+	 * 系统初始化的时候只进行住宅类房源数据的获取
+	 * 1.已通过审核
+	 * 2.已上架
+	 * 3.已绑定
+	 */
+	Query query = new Query();
+	query.setStatus(Integer.valueOf(1));
+	query.setStudio(Integer.valueOf(1));
+	query.setType(1);
+	List<RentHouse> zzHouse = new ArrayList<RentHouse>();
+	zzHouse = this.rentHouseService.selectQuery(query);
+	zzHouse =  HouseUtil.setRentHouses(zzHouse);
+	zzHouse = HouseUtil.setRentHousePic(zzHouse);//配置图片：一张
+
+	session.setAttribute("zzHouse", zzHouse);
+	return "forward:/Home/index.jsp";
+}
+	
+	
+	/**
+	 * Ajax底部自动刷新房源信息
+	 * @param request
+	 * @param response
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping("moreHouse")
+	public void moreHouse(HttpServletRequest request, HttpServletResponse response,
+			HttpSession session,@RequestParam("type") Integer type,@RequestParam("page") Integer page){
+		try {
+			Query query = new Query();
+			query.setType(type);//根据类型获取
+			query.setBegin(query.getPageNumber()*page);//用户想要查看的页码
+			List<RentHouse> lists = new ArrayList<RentHouse>();
+			lists = this.rentHouseService.selectQuery(query);
+			lists =  HouseUtil.setRentHouses(lists);//参数配置
+			lists = HouseUtil.setRentHousePic(lists);//配置图片：一张
+			JSONArray json = JSONArray.fromObject(lists);
+			response.setContentType("text/html;charset=UTF-8"); 
+			response.getWriter().println(json);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+
+	/**
+	 * Ajax筛选刷新房源信息
+	 * 
+	 * 第二个条件是不确定类型的条件
+	 * 
+	 * 1.住宅类型：第二筛选条件为户型
+	 * 1.办公类型和商铺类型：第二筛选条件为面积
+	 * @param request
+	 * @param response
+	 * @param session
+	 * @return 
+	 * @return
+	 */
+	@RequestMapping("chooseHouse")
+	public String ChooseHouse(HttpServletRequest request, HttpServletResponse response, 
+			@RequestParam("aparttype") String rentaparttype, @RequestParam("term") String term,
+			HttpSession session, @RequestParam("price") String price,
+			@RequestParam("type") Integer type){
+		System.out.println("\n\n\ntype:"+type+"\n\npricec:"+price+"\n\ntrerm:"+term+"\n\naparttype:"+rentaparttype);
+		try {
+			List<RentHouse> lists = new ArrayList<RentHouse>();
+			Query query = new Query();
+			query.setStatus(Integer.valueOf(1));
+			query.setStudio(Integer.valueOf(1));
+			query.setType(type);
+			if(!rentaparttype.equals("0")){
+				Integer apart = ApartType.setmyApartType(rentaparttype);
+				query.setAparttype(apart);
+			}
+			if(!term.equals("0")){
+				if(type==1){
+					query.setAddress(term);
+				}else{
+					String a[] = term.split(",");
+					query.setMinarea(Integer.parseInt(a[0]));
+					query.setMaxarea(Integer.parseInt(a[1]));
+				}
+			}
+			if((!price.equals("0"))){
+				String p[] = price.split(",");
+				query.setMinprice(Integer.parseInt(p[0]));
+				query.setMaxprice(Integer.parseInt(p[1]));
+			}
+			lists = this.rentHouseService.selectQuery(query);
+			lists = HouseUtil.setRentHouses(lists);//参数配置
+			lists = HouseUtil.setRentHousePic(lists);//配置图片：一张
+			JSONArray json = JSONArray.fromObject(lists);
+			response.setContentType("text/html;charset=UTF-8");
+			response.getWriter().println(json);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	/**
+	 * Ajax获取分类房源信息
+	 * @param request
+	 * @param response
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping("getHouse")
+	public void getHouse(HttpServletRequest request, HttpServletResponse response,
+			HttpSession session,@RequestParam("type") Integer type){
+		try {
+			Query query = new Query();
+			query.setType(type);//根据类型获取
+			List<RentHouse> lists = new ArrayList<RentHouse>();
+			lists = this.rentHouseService.selectQuery(query);
+			lists =  HouseUtil.setRentHouses(lists);//参数配置
+			lists = HouseUtil.setRentHousePic(lists);//配置图片：一张
+			JSONArray json = JSONArray.fromObject(lists);
+			response.setContentType("text/html;charset=UTF-8"); 
+			response.getWriter().println(json);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+}

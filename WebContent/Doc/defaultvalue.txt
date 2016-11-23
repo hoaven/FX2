@@ -1,0 +1,69 @@
+1.RentHouse
+		fid——0
+		isup——0
+		allisup——0
+		clicknum——0
+		iswrite——2
+		trus——2
+		studio——2
+		bgtype——1
+		status——2
+		tjpersonid——"无推荐人"
+		equitment——"0/0/0/0/0/0/0/0/"
+		renttime——"1"
+		shenfen——1
+		shangpuwork——"1"
+		transferfee——"无"
+		zxdate——"1"
+		chicktime——"随时入住"
+		paytype——1
+		renovation——1
+		sptype——1
+		colnum——1
+		floorcount——10
+		floor——10
+		area——200
+		aparttype——1
+		type——1
+		picurl——"/data/img/renthouse/1.jpg-/data/img/renthouse/1.jpg-/data/img/renthouse/1.jpg"
+		
+
+		
+2.SeeHouse
+		yytime——"0"
+		ispay——0
+		seenum——0
+		status——0
+		
+		
+3.Fx2
+		pic——"/Style/img/3.jpg"
+		sex——1
+		score——5
+		seenum——0
+		sunum——0
+		
+
+4.Fans
+		sex——0
+		type——"业主"
+		headimgurl——"http://wx.qlogo.cn/mmopen/R1TYAJ5QUiaRF1BepgzQskZXhmDyZO48SZRGdAP3Z92sSY0v474Hib8INiaM0P4ibL3kJX5CoOEA4NcD3rNaKNNTEg/0"
+		groupid——0
+		price——0
+		integral——0
+		
+		
+5.Comment
+		score——5
+
+
+
+*请在自己的代码中进行配置，基于此项目前后端框架限制，数据库配置默认值无效，必须在代码中进行手动设置！！切记！！
+score最高分为5分
+		
+		
+		
+		
+		
+		
+		

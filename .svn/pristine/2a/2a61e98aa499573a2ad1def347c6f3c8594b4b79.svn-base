@@ -1,0 +1,844 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zhanwkj.fx2.dao.RentHouseMapper">
+	<resultMap id="BaseResultMap" type="com.zhanwkj.fx2.model.RentHouse">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="title" property="title" jdbcType="VARCHAR" />
+		<result column="address" property="address" jdbcType="VARCHAR" />
+		<result column="type" property="type" jdbcType="INTEGER" />
+		<result column="aparttype" property="aparttype" jdbcType="INTEGER" />
+		<result column="area" property="area" jdbcType="INTEGER" />
+		<result column="floor" property="floor" jdbcType="INTEGER" />
+		<result column="floorcount" property="floorcount" jdbcType="INTEGER" />
+		<result column="colnum" property="colnum" jdbcType="INTEGER" />
+		<result column="sptype" property="sptype" jdbcType="INTEGER" />
+		<result column="renovation" property="renovation" jdbcType="INTEGER" />
+		<result column="paytype" property="paytype" jdbcType="INTEGER" />
+		<result column="chicktime" property="chicktime" jdbcType="VARCHAR" />
+		<result column="description" property="description" jdbcType="VARCHAR" />
+		<result column="uid" property="uid" jdbcType="INTEGER" />
+		<result column="price" property="price" jdbcType="VARCHAR" />
+		<result column="zxdate" property="zxdate" jdbcType="VARCHAR" />
+		<result column="transferfee" property="transferfee" jdbcType="VARCHAR" />
+		<result column="shanpuwork" property="shanpuwork" jdbcType="VARCHAR" />
+		<result column="addressx" property="addressx" jdbcType="VARCHAR" />
+		<result column="addressy" property="addressy" jdbcType="VARCHAR" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="sex" property="sex" jdbcType="INTEGER" />
+		<result column="phone" property="phone" jdbcType="VARCHAR" />
+		<result column="shenfen" property="shenfen" jdbcType="INTEGER" />
+		<result column="renttime" property="renttime" jdbcType="VARCHAR" />
+		<result column="equitment" property="equitment" jdbcType="VARCHAR" />
+		<result column="tjpersonid" property="tjpersonid" jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+		<result column="bgtype" property="bgtype" jdbcType="INTEGER" />
+		<result column="fid" property="fid" jdbcType="INTEGER" />
+		<result column="studio" property="studio" jdbcType="INTEGER" />
+		<result column="trus" property="trus" jdbcType="INTEGER" />
+		<result column="iswrite" property="iswrite" jdbcType="INTEGER" />
+		<result column="clicknum" property="clicknum" jdbcType="INTEGER" />
+		<result column="isup" property="isup" jdbcType="INTEGER" />
+		<result column="allisup" property="allisup" jdbcType="INTEGER" />
+	</resultMap>
+	<resultMap id="ResultMapWithBLOBs" type="com.zhanwkj.fx2.model.RentHouse"
+		extends="BaseResultMap">
+		<result column="picurl" property="picurl" jdbcType="LONGVARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, title, address, type, aparttype, area, floor,
+		floorcount, colnum,
+		sptype, renovation,
+		paytype, chicktime, description,
+		uid, price, zxdate, transferfee, shanpuwork,
+		addressx,
+		addressy, name,
+		sex, phone, shenfen, renttime, equitment, tjpersonid, status,
+		bgtype,
+		fid, studio, trus, iswrite, clicknum, isup, allisup
+	</sql>
+	<sql id="Blob_Column_List">
+		picurl
+	</sql>
+
+	<!-- 非主键条件查询 Select -->
+	<select id="findRentHouseByType" resultMap="ResultMapWithBLOBs"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from fx_renthouse
+		where type = #{type,jdbcType=INTEGER}
+	</select>
+	
+	<select id="findRentHouseByFX2Id" resultMap="ResultMapWithBLOBs"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from fx_renthouse
+		where fid = #{fid,jdbcType=INTEGER}
+	</select>
+	
+<!-- 	<select id="findRentHouseCheck" resultMap="ResultMapWithBLOBs"
+		parameterType="java.lang.Integer">
+		select
+		*
+		from fx_renthouse
+		where fid = #{fid}
+		and studio=#{studio}
+	</select> -->
+
+	<!-- 非主键条件查询 Select -->
+	<select id="findRentHouseByType1" resultMap="ResultMapWithBLOBs"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from fx_renthouse
+		where type = #{type,jdbcType=INTEGER} order by
+		clicknum desc
+	</select>
+	<!-- 非主键条件查询 Select -->
+	<select id="findRentHouseByIsup" resultMap="ResultMapWithBLOBs"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from fx_renthouse
+		where isup = #{isup,jdbcType=INTEGER} order by id desc
+	</select>
+	<!-- 非主键条件查询 Select -->
+	<select id="findRentHouseByAllisup" resultMap="ResultMapWithBLOBs"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from fx_renthouse
+		where allisup = #{allisup,jdbcType=INTEGER} order by id desc
+	</select>
+
+	<select id="findAllBytype" resultMap="ResultMapWithBLOBs"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from fx_renthouse
+		where type = #{type,jdbcType=INTEGER} order by
+		clicknum desc limit 0,2
+	</select>
+
+	<select id="findAllBycknum" resultMap="ResultMapWithBLOBs"
+		parameterType="java.lang.Integer">
+		SELECT * FROM fx_renthouse
+		ORDER BY RAND() LIMIT 3
+	</select>
+
+	<!-- 主键条件查询 Select -->
+	<select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from fx_renthouse
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	
+	<select id="selectOneByOtherKey" resultMap="ResultMapWithBLOBs"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from fx_renthouse
+		where name = #{name,jdbcType=VARCHAR} 
+		and title = #{title,jdbcType=VARCHAR} 
+		and address = #{address,jdbcType=VARCHAR}
+		and price = #{price,jdbcType=VARCHAR}
+	</select>
+
+	<!-- 主键条件删除 Delect -->
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		fx_renthouse
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+
+	<!-- 无条件插入 Insert -->
+	<insert id="insert" parameterType="com.zhanwkj.fx2.model.RentHouse">
+		insert into fx_renthouse (id,
+		title, address,
+		type, aparttype, area,
+		floor, floorcount, colnum,
+		sptype, renovation, paytype,
+		chicktime, description, uid,
+		price, zxdate,
+		transferfee,
+		shanpuwork, addressx, addressy,
+		name, sex, phone, shenfen,
+		renttime, equitment, tjpersonid,
+		status, bgtype, fid,
+		studio, trus,
+		iswrite,
+		 isup, allisup,
+		picurl)
+		values (#{id,jdbcType=INTEGER},
+		#{title,jdbcType=VARCHAR},
+		#{address,jdbcType=VARCHAR},
+		#{type,jdbcType=INTEGER}, #{aparttype,jdbcType=INTEGER},
+		#{area,jdbcType=INTEGER},
+		#{floor,jdbcType=INTEGER},
+		#{floorcount,jdbcType=INTEGER},
+		#{colnum,jdbcType=INTEGER},
+		#{sptype,jdbcType=INTEGER}, #{renovation,jdbcType=INTEGER},
+		#{paytype,jdbcType=INTEGER},
+		#{chicktime,jdbcType=VARCHAR},
+		#{description,jdbcType=VARCHAR},
+		#{uid,jdbcType=INTEGER},
+		#{price,jdbcType=VARCHAR}, #{zxdate,jdbcType=VARCHAR},
+		#{transferfee,jdbcType=VARCHAR},
+		#{shanpuwork,jdbcType=VARCHAR},
+		#{addressx,jdbcType=VARCHAR},
+		#{addressy,jdbcType=VARCHAR},
+		#{name,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER},
+		#{phone,jdbcType=VARCHAR},
+		#{shenfen,jdbcType=INTEGER},
+		#{renttime,jdbcType=VARCHAR}, #{equitment,jdbcType=VARCHAR},
+		#{tjpersonid,jdbcType=VARCHAR},
+		#{status,jdbcType=INTEGER},
+		#{bgtype,jdbcType=INTEGER},
+		#{fid,jdbcType=INTEGER},
+		#{studio,jdbcType=INTEGER}, #{trus,jdbcType=INTEGER},
+		#{iswrite,jdbcType=INTEGER},
+		
+		#{isup,jdbcType=INTEGER},
+		#{allisup,jdbcType=INTEGER},
+		#{picurl,jdbcType=LONGVARCHAR})
+	</insert>
+
+	<!-- 选择性条件插入 insertSelective -->
+	<insert id="insertSelective" parameterType="com.zhanwkj.fx2.model.RentHouse">
+		insert into fx_renthouse
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="title != null">
+				title,
+			</if>
+			<if test="address != null">
+				address,
+			</if>
+			<if test="type != null">
+				type,
+			</if>
+			<if test="aparttype != null">
+				aparttype,
+			</if>
+			<if test="area != null">
+				area,
+			</if>
+			<if test="floor != null">
+				floor,
+			</if>
+			<if test="floorcount != null">
+				floorcount,
+			</if>
+			<if test="colnum != null">
+				colnum,
+			</if>
+			<if test="sptype != null">
+				sptype,
+			</if>
+			<if test="renovation != null">
+				renovation,
+			</if>
+			<if test="paytype != null">
+				paytype,
+			</if>
+			<if test="chicktime != null">
+				chicktime,
+			</if>
+			<if test="description != null">
+				description,
+			</if>
+			<if test="uid != null">
+				uid,
+			</if>
+			<if test="price != null">
+				price,
+			</if>
+			<if test="zxdate != null">
+				zxdate,
+			</if>
+			<if test="transferfee != null">
+				transferfee,
+			</if>
+			<if test="shanpuwork != null">
+				shanpuwork,
+			</if>
+			<if test="addressx != null">
+				addressx,
+			</if>
+			<if test="addressy != null">
+				addressy,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="sex != null">
+				sex,
+			</if>
+			<if test="phone != null">
+				phone,
+			</if>
+			<if test="shenfen != null">
+				shenfen,
+			</if>
+			<if test="renttime != null">
+				renttime,
+			</if>
+			<if test="equitment != null">
+				equitment,
+			</if>
+			<if test="tjpersonid != null">
+				tjpersonid,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="bgtype != null">
+				bgtype,
+			</if>
+			<if test="fid != null">
+				fid,
+			</if>
+			<if test="studio != null">
+				studio,
+			</if>
+			<if test="trus != null">
+				trus,
+			</if>
+			<if test="iswrite != null">
+				iswrite,
+			</if>
+			<if test="clicknum != null">
+				clicknum,
+			</if>
+			<if test="isup != null">
+				isup,
+			</if>
+			<if test="allisup != null">
+				allisup,
+			</if>
+			<if test="picurl != null">
+				picurl,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="title != null">
+				#{title,jdbcType=VARCHAR},
+			</if>
+			<if test="address != null">
+				#{address,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				#{type,jdbcType=INTEGER},
+			</if>
+			<if test="aparttype != null">
+				#{aparttype,jdbcType=INTEGER},
+			</if>
+			<if test="area != null">
+				#{area,jdbcType=INTEGER},
+			</if>
+			<if test="floor != null">
+				#{floor,jdbcType=INTEGER},
+			</if>
+			<if test="floorcount != null">
+				#{floorcount,jdbcType=INTEGER},
+			</if>
+			<if test="colnum != null">
+				#{colnum,jdbcType=INTEGER},
+			</if>
+			<if test="sptype != null">
+				#{sptype,jdbcType=INTEGER},
+			</if>
+			<if test="renovation != null">
+				#{renovation,jdbcType=INTEGER},
+			</if>
+			<if test="paytype != null">
+				#{paytype,jdbcType=INTEGER},
+			</if>
+			<if test="chicktime != null">
+				#{chicktime,jdbcType=VARCHAR},
+			</if>
+			<if test="description != null">
+				#{description,jdbcType=VARCHAR},
+			</if>
+			<if test="uid != null">
+				#{uid,jdbcType=INTEGER},
+			</if>
+			<if test="price != null">
+				#{price,jdbcType=VARCHAR},
+			</if>
+			<if test="zxdate != null">
+				#{zxdate,jdbcType=VARCHAR},
+			</if>
+			<if test="transferfee != null">
+				#{transferfee,jdbcType=VARCHAR},
+			</if>
+			<if test="shanpuwork != null">
+				#{shanpuwork,jdbcType=VARCHAR},
+			</if>
+			<if test="addressx != null">
+				#{addressx,jdbcType=VARCHAR},
+			</if>
+			<if test="addressy != null">
+				#{addressy,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="sex != null">
+				#{sex,jdbcType=INTEGER},
+			</if>
+			<if test="phone != null">
+				#{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="shenfen != null">
+				#{shenfen,jdbcType=INTEGER},
+			</if>
+			<if test="renttime != null">
+				#{renttime,jdbcType=VARCHAR},
+			</if>
+			<if test="equitment != null">
+				#{equitment,jdbcType=VARCHAR},
+			</if>
+			<if test="tjpersonid != null">
+				#{tjpersonid,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=INTEGER},
+			</if>
+			<if test="bgtype != null">
+				#{bgtype,jdbcType=INTEGER},
+			</if>
+			<if test="fid != null">
+				#{fid,jdbcType=INTEGER},
+			</if>
+			<if test="studio != null">
+				#{studio,jdbcType=INTEGER},
+			</if>
+			<if test="trus != null">
+				#{trus,jdbcType=INTEGER},
+			</if>
+			<if test="iswrite != null">
+				#{iswrite,jdbcType=INTEGER},
+			</if>
+			<if test="clicknum != null">
+				#{clicknum,jdbcType=INTEGER},
+			</if>
+			<if test="isup != null">
+				#{isup,jdbcType=INTEGER},
+			</if>
+			<if test="allisup != null">
+				#{allisup,jdbcType=INTEGER},
+			</if>
+			<if test="picurl != null">
+				#{picurl,jdbcType=LONGVARCHAR},
+			</if>
+		</trim>
+	</insert>
+
+	<!-- 选择性条件主键修改 Update -->
+	<update id="updateByPrimaryKeySelective" parameterType="com.zhanwkj.fx2.model.RentHouse">
+		update fx_renthouse
+		<set>
+			<if test="title != null">
+				title = #{title,jdbcType=VARCHAR},
+			</if>
+			<if test="address != null">
+				address = #{address,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				type = #{type,jdbcType=INTEGER},
+			</if>
+			<if test="aparttype != null">
+				aparttype = #{aparttype,jdbcType=INTEGER},
+			</if>
+			<if test="area != null">
+				area = #{area,jdbcType=INTEGER},
+			</if>
+			<if test="floor != null">
+				floor = #{floor,jdbcType=INTEGER},
+			</if>
+			<if test="floorcount != null">
+				floorcount = #{floorcount,jdbcType=INTEGER},
+			</if>
+			<if test="colnum != null">
+				colnum = #{colnum,jdbcType=INTEGER},
+			</if>
+			<if test="sptype != null">
+				sptype = #{sptype,jdbcType=INTEGER},
+			</if>
+			<if test="renovation != null">
+				renovation = #{renovation,jdbcType=INTEGER},
+			</if>
+			<if test="paytype != null">
+				paytype = #{paytype,jdbcType=INTEGER},
+			</if>
+			<if test="chicktime != null">
+				chicktime = #{chicktime,jdbcType=VARCHAR},
+			</if>
+			<if test="description != null">
+				description = #{description,jdbcType=VARCHAR},
+			</if>
+			<if test="uid != null">
+				uid = #{uid,jdbcType=INTEGER},
+			</if>
+			<if test="price != null">
+				price = #{price,jdbcType=VARCHAR},
+			</if>
+			<if test="zxdate != null">
+				zxdate = #{zxdate,jdbcType=VARCHAR},
+			</if>
+			<if test="transferfee != null">
+				transferfee = #{transferfee,jdbcType=VARCHAR},
+			</if>
+			<if test="shanpuwork != null">
+				shanpuwork = #{shanpuwork,jdbcType=VARCHAR},
+			</if>
+			<if test="addressx != null">
+				addressx = #{addressx,jdbcType=VARCHAR},
+			</if>
+			<if test="addressy != null">
+				addressy = #{addressy,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="sex != null">
+				sex = #{sex,jdbcType=INTEGER},
+			</if>
+			<if test="phone != null">
+				phone = #{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="shenfen != null">
+				shenfen = #{shenfen,jdbcType=INTEGER},
+			</if>
+			<if test="renttime != null">
+				renttime = #{renttime,jdbcType=VARCHAR},
+			</if>
+			<if test="equitment != null">
+				equitment = #{equitment,jdbcType=VARCHAR},
+			</if>
+			<if test="tjpersonid != null">
+				tjpersonid = #{tjpersonid,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=INTEGER},
+			</if>
+			<if test="bgtype != null">
+				bgtype = #{bgtype,jdbcType=INTEGER},
+			</if>
+			<if test="fid != null">
+				fid = #{fid,jdbcType=INTEGER},
+			</if>
+			<if test="studio != null">
+				studio = #{studio,jdbcType=INTEGER},
+			</if>
+			<if test="trus != null">
+				trus = #{trus,jdbcType=INTEGER},
+			</if>
+			<if test="iswrite != null">
+				iswrite = #{iswrite,jdbcType=INTEGER},
+			</if>
+			<if test="clicknum != null">
+				clicknum = #{clicknum,jdbcType=INTEGER},
+			</if>
+			<if test="isup != null">
+				isup = #{isup,jdbcType=INTEGER},
+			</if>
+			<if test="allisup != null">
+				allisup = #{allisup,jdbcType=INTEGER},
+			</if>
+			<if test="picurl != null">
+				picurl = #{picurl,jdbcType=LONGVARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+
+	<!-- 主键条件修改 Update -->
+	<update id="updateByPrimaryKeyWithBLOBs" parameterType="com.zhanwkj.fx2.model.RentHouse">
+		update
+		fx_renthouse
+		set title = #{title,jdbcType=VARCHAR},
+		address =
+		#{address,jdbcType=VARCHAR},
+		type = #{type,jdbcType=INTEGER},
+		aparttype
+		= #{aparttype,jdbcType=INTEGER},
+		area = #{area,jdbcType=INTEGER},
+		floor
+		= #{floor,jdbcType=INTEGER},
+		floorcount =
+		#{floorcount,jdbcType=INTEGER},
+		colnum = #{colnum,jdbcType=INTEGER},
+		sptype = #{sptype,jdbcType=INTEGER},
+		renovation =
+		#{renovation,jdbcType=INTEGER},
+		paytype = #{paytype,jdbcType=INTEGER},
+		chicktime = #{chicktime,jdbcType=VARCHAR},
+		description =
+		#{description,jdbcType=VARCHAR},
+		uid = #{uid,jdbcType=INTEGER},
+		price =
+		#{price,jdbcType=VARCHAR},
+		zxdate = #{zxdate,jdbcType=VARCHAR},
+		transferfee = #{transferfee,jdbcType=VARCHAR},
+		shanpuwork =
+		#{shanpuwork,jdbcType=VARCHAR},
+		addressx =
+		#{addressx,jdbcType=VARCHAR},
+		addressy = #{addressy,jdbcType=VARCHAR},
+		name = #{name,jdbcType=VARCHAR},
+		sex = #{sex,jdbcType=INTEGER},
+		phone =
+		#{phone,jdbcType=VARCHAR},
+		shenfen = #{shenfen,jdbcType=INTEGER},
+		renttime = #{renttime,jdbcType=VARCHAR},
+		equitment =
+		#{equitment,jdbcType=VARCHAR},
+		tjpersonid =
+		#{tjpersonid,jdbcType=VARCHAR},
+		status = #{status,jdbcType=INTEGER},
+		bgtype = #{bgtype,jdbcType=INTEGER},
+		fid = #{fid,jdbcType=INTEGER},
+		studio = #{studio,jdbcType=INTEGER},
+		trus = #{trus,jdbcType=INTEGER},
+		iswrite = #{iswrite,jdbcType=INTEGER},
+		clicknum =
+		#{clicknum,jdbcType=INTEGER},
+		isup = #{isup,jdbcType=INTEGER},
+		allisup =
+		#{allisup,jdbcType=INTEGER},
+		picurl = #{picurl,jdbcType=LONGVARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+
+	<!-- 主键条件修改 Update -->
+	<update id="updateByPrimaryKey" parameterType="com.zhanwkj.fx2.model.RentHouse">
+		update
+		fx_renthouse
+		set title = #{title,jdbcType=VARCHAR},
+		address =
+		#{address,jdbcType=VARCHAR},
+		type = #{type,jdbcType=INTEGER},
+		aparttype
+		= #{aparttype,jdbcType=INTEGER},
+		area = #{area,jdbcType=INTEGER},
+		floor
+		= #{floor,jdbcType=INTEGER},
+		floorcount =
+		#{floorcount,jdbcType=INTEGER},
+		colnum = #{colnum,jdbcType=INTEGER},
+		sptype = #{sptype,jdbcType=INTEGER},
+		renovation =
+		#{renovation,jdbcType=INTEGER},
+		paytype = #{paytype,jdbcType=INTEGER},
+		chicktime = #{chicktime,jdbcType=VARCHAR},
+		description =
+		#{description,jdbcType=VARCHAR},
+		uid = #{uid,jdbcType=INTEGER},
+		price =
+		#{price,jdbcType=VARCHAR},
+		zxdate = #{zxdate,jdbcType=VARCHAR},
+		transferfee = #{transferfee,jdbcType=VARCHAR},
+		shanpuwork =
+		#{shanpuwork,jdbcType=VARCHAR},
+		addressx =
+		#{addressx,jdbcType=VARCHAR},
+		addressy = #{addressy,jdbcType=VARCHAR},
+		name = #{name,jdbcType=VARCHAR},
+		sex = #{sex,jdbcType=INTEGER},
+		phone =
+		#{phone,jdbcType=VARCHAR},
+		shenfen = #{shenfen,jdbcType=INTEGER},
+		renttime = #{renttime,jdbcType=VARCHAR},
+		equitment =
+		#{equitment,jdbcType=VARCHAR},
+		tjpersonid =
+		#{tjpersonid,jdbcType=VARCHAR},
+		status = #{status,jdbcType=INTEGER},
+		bgtype = #{bgtype,jdbcType=INTEGER},
+		fid = #{fid,jdbcType=INTEGER},
+		studio = #{studio,jdbcType=INTEGER},
+		trus = #{trus,jdbcType=INTEGER},
+		iswrite = #{iswrite,jdbcType=INTEGER},
+		clicknum =
+		#{clicknum,jdbcType=INTEGER},
+		isup = #{isup,jdbcType=INTEGER},
+		allisup =
+		#{allisup,jdbcType=INTEGER}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+
+	<!-- 非主键条件查询所有 SelectAll -->
+	<select id="findAll" resultType="com.zhanwkj.fx2.model.RentHouse">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from fx_renthouse
+	</select>
+
+	<!-- 非主键条件查询 Select -->
+	<select id="selectQuery" parameterType="com.zhanwkj.fx2.utils.Query"
+		resultType="com.zhanwkj.fx2.model.RentHouse">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from
+		fx_renthouse
+		<where>
+			<if test="type != null and type !=''">
+				and type=#{type}
+			</if>
+			<if test="aparttype != null and aparttype !=''">
+				and aparttype=#{aparttype}
+			</if>
+			<if
+				test="minprice != null and minprice !='' and maxprice != null and maxprice != ''">
+				and price>=#{minprice} and #{maxprice}>=price
+			</if>
+			<if
+				test="minarea != null and minarea !='' and maxarea != null and maxarea != ''">
+				and area>=#{minarea} and #{maxarea}>=area
+			</if>
+			<if test="address != null and address !=''">
+				and address=#{address}
+			</if>
+			<if test="uid != null and uid !=''">
+				and uid=#{uid}
+			</if>
+			<if test="fid != null and fid !=''">
+				and fid=#{fid}
+			</if>
+			<if test="status != null and status !=''">
+				and status=#{status}
+			</if>
+			<if test="studio != null and studio !=''">
+				and studio=#{studio}
+			</if>
+		</where>
+		<if test="sours != null and sours.size >0">
+			order by
+			<foreach collection="sours" item="sour" separator=",">
+				${sour.key} ${sour.value}
+			</foreach>
+		</if>
+		limit #{begin},#{pageNumber}
+	</select>
+	
+		<!-- 非主键条件查询 Select -->
+	<select id="selectQueryCheck" parameterType="com.zhanwkj.fx2.utils.Query"
+		resultType="com.zhanwkj.fx2.model.RentHouse">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from
+		fx_renthouse
+		<where>
+			<if test="fid != null and fid !=''">
+				and fid=#{fid}
+			</if>
+			<if test="studio != null and studio !=''">
+				and studio=#{studio}
+			</if>
+		</where>
+	</select>
+
+	<!-- 非主键条件查询 Select -->
+	<select id="zhoubianHouse" parameterType="com.zhanwkj.fx2.utils.Query"
+		resultType="com.zhanwkj.fx2.model.RentHouse">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from
+		fx_renthouse
+		<where>
+			<if test="type != null and type !=''">
+				and type=#{type}
+			</if>
+			<if test="aparttype != null and aparttype !=''">
+				and aparttype=#{aparttype}
+			</if>
+			<if
+				test="minprice != null and minprice !='' and maxprice != null and maxprice != ''">
+				and price>=#{minprice} and #{maxprice}>=price
+			</if>
+			<if
+				test="minarea != null and minarea !='' and maxarea != null and maxarea != ''">
+				and area>=#{minarea} and #{maxarea}>=area
+			</if>
+
+			<if test="address != null and address !=''">
+				and address=#{address}
+			</if>
+			<if test="uid != null and uid !=''">
+				and uid=#{uid}
+			</if>
+			<if test="fid != null and fid !=''">
+				and fid=#{fid}
+			</if>
+			<if test="status != null and status !=''">
+				and status=#{status}
+			</if>
+			<if test="studio != null and studio !=''">
+				and studio=#{studio}
+			</if>
+		</where>
+
+	</select>
+
+	<!-- 数学统计 Count -->
+	<select id="getTotalCount" resultType="java.lang.Integer">
+		select count(*) from
+		fx_renthouse where studio= 1 and status=1
+	</select>
+
+	<!-- 主键条件查询 Select -->
+	<select id="selectRenthouseOne" parameterType="java.lang.Integer"
+		resultType="com.zhanwkj.fx2.model.RentHouse">
+		select * from fx_renthouse where id= #{id}
+
+	</select>
+
+	<!-- 有时取出数据为空，废弃！ -->
+	<!-- 按类型随机查询1条数据查询 Select 效率极高：JOIN方式,15万条数据仅需 0.015130 秒 <select id="RandfindRentHouseByType" 
+		resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer"> select 
+		* FROM fx_renthouse WHERE id >= (SELECT floor( RAND() * ((SELECT MAX(id) 
+		FROM fx_renthouse)-(SELECT MIN(id) FROM fx_renthouse)) + (SELECT MIN(id) 
+		FROM fx_renthouse))) and type=#{type} ORDER BY id LIMIT 1; </select> -->
+
+	<!-- 最惨淡策略 ：10万条数据3秒 -->
+	<select id="RandfindRentHouseByType" resultMap="ResultMapWithBLOBs"
+		parameterType="java.lang.Integer">
+		SELECT * FROM fx_renthouse
+		where type=#{type}
+		ORDER BY RAND() LIMIT 2
+	</select>
+</mapper>

@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zhanwkj.fx2.dao.SeeHouseMapper">
+	<resultMap id="BaseResultMap" type="com.zhanwkj.fx2.model.SeeHouse">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="uid" property="uid" jdbcType="INTEGER" />
+		<result column="fx2id" property="fx2id" jdbcType="INTEGER" />
+		<result column="rentid" property="rentid" jdbcType="INTEGER" />
+		<result column="ispay" property="ispay" jdbcType="INTEGER" />
+		<result column="yytime" property="yytime" jdbcType="VARCHAR" />
+		<result column="seenum" property="seenum" jdbcType="INTEGER" />
+		<result column="seetime" property="seetime" jdbcType="VARCHAR" />
+		<result column="paytype" property="paytype" jdbcType="INTEGER" />
+		<result column="comment" property="comment" jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, uid, fx2id, rentid, ispay, yytime, seenum, seetime, paytype, comment,
+		status
+	</sql>
+
+	<!-- 主键条件查询 Select -->
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from fx_seehouse
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+
+	<!-- 主键条件删除 Delect -->
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from fx_seehouse
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+
+	<!-- 无条件插入 Insert -->
+	<insert id="insert" parameterType="com.zhanwkj.fx2.model.SeeHouse">
+		insert into fx_seehouse (id, uid, fx2id,
+		rentid, ispay, yytime,
+		seenum, seetime, paytype,
+		comment, status)
+		values (#{id,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER},
+		#{fx2id,jdbcType=INTEGER},
+		#{rentid,jdbcType=INTEGER}, #{ispay,jdbcType=INTEGER}, #{yytime,jdbcType=VARCHAR},
+		#{seenum,jdbcType=INTEGER}, #{seetime,jdbcType=VARCHAR},
+		#{paytype,jdbcType=INTEGER},
+		#{comment,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER})
+	</insert>
+
+	<!-- 选择性条件插入 insertSelective -->
+	<insert id="insertSelective" parameterType="com.zhanwkj.fx2.model.SeeHouse">
+		insert into fx_seehouse
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="uid != null">
+				uid,
+			</if>
+			<if test="fx2id != null">
+				fx2id,
+			</if>
+			<if test="rentid != null">
+				rentid,
+			</if>
+			<if test="ispay != null">
+				ispay,
+			</if>
+			<if test="yytime != null">
+				yytime,
+			</if>
+			<if test="seenum != null">
+				seenum,
+			</if>
+			<if test="seetime != null">
+				seetime,
+			</if>
+			<if test="paytype != null">
+				paytype,
+			</if>
+			<if test="comment != null">
+				comment,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="uid != null">
+				#{uid,jdbcType=INTEGER},
+			</if>
+			<if test="fx2id != null">
+				#{fx2id,jdbcType=INTEGER},
+			</if>
+			<if test="rentid != null">
+				#{rentid,jdbcType=INTEGER},
+			</if>
+			<if test="ispay != null">
+				#{ispay,jdbcType=INTEGER},
+			</if>
+			<if test="yytime != null">
+				#{yytime,jdbcType=VARCHAR},
+			</if>
+			<if test="seenum != null">
+				#{seenum,jdbcType=INTEGER},
+			</if>
+			<if test="seetime != null">
+				#{seetime,jdbcType=VARCHAR},
+			</if>
+			<if test="paytype != null">
+				#{paytype,jdbcType=INTEGER},
+			</if>
+			<if test="comment != null">
+				#{comment,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+
+	<!-- 选择性条件主键修改 Update -->
+	<update id="updateByPrimaryKeySelective" parameterType="com.zhanwkj.fx2.model.SeeHouse">
+		update fx_seehouse
+		<set>
+			<if test="uid != null">
+				uid = #{uid,jdbcType=INTEGER},
+			</if>
+			<if test="fx2id != null">
+				fx2id = #{fx2id,jdbcType=INTEGER},
+			</if>
+			<if test="rentid != null">
+				rentid = #{rentid,jdbcType=INTEGER},
+			</if>
+			<if test="ispay != null">
+				ispay = #{ispay,jdbcType=INTEGER},
+			</if>
+			<if test="yytime != null">
+				yytime = #{yytime,jdbcType=VARCHAR},
+			</if>
+			<if test="seenum != null">
+				seenum = #{seenum,jdbcType=INTEGER},
+			</if>
+			<if test="seetime != null">
+				seetime = #{seetime,jdbcType=VARCHAR},
+			</if>
+			<if test="paytype != null">
+				paytype = #{paytype,jdbcType=INTEGER},
+			</if>
+			<if test="comment != null">
+				comment = #{comment,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=INTEGER},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+
+	<!-- 主键条件修改 Update -->
+	<update id="updateByPrimaryKey" parameterType="com.zhanwkj.fx2.model.SeeHouse">
+		update fx_seehouse
+		set uid = #{uid,jdbcType=INTEGER},
+		fx2id = #{fx2id,jdbcType=INTEGER},
+		rentid = #{rentid,jdbcType=INTEGER},
+		ispay = #{ispay,jdbcType=INTEGER},
+		yytime = #{yytime,jdbcType=VARCHAR},
+		seenum = #{seenum,jdbcType=INTEGER},
+		seetime = #{seetime,jdbcType=VARCHAR},
+		paytype = #{paytype,jdbcType=INTEGER},
+		comment = #{comment,jdbcType=VARCHAR},
+		status = #{status,jdbcType=INTEGER}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+
+	<!-- 非主键条件查询所有 SelectAll -->
+	<select id="findAll" resultType="com.zhanwkj.fx2.model.SeeHouse">
+		select
+		<include refid="Base_Column_List" />
+		from
+		fx_seehouse
+	</select>
+
+	<!-- 非主键条件查询 Select -->
+	<select id="findByQuery" parameterType="com.zhanwkj.fx2.utils.Query"
+		resultType="com.zhanwkj.fx2.model.SeeHouse">
+		select
+		<include refid="Base_Column_List" />
+		from
+		fx_seehouse
+		<where>
+			<if test="type != null and type !=''">
+				and type=#{type}
+			</if>
+			<if test="aparttype != null and aparttype !=''">
+				and aparttype=#{aparttype}
+			</if>
+			<if
+				test="minprice != null and minprice !='' and maxprice != null and maxprice != ''">
+				and price>=#{minprice} and #{maxprice}>=price
+			</if>
+			<if test="address != null and address !=''">
+				and address=#{address}
+			</if>
+			<if test="uid != null and uid !=''">
+				and uid=#{uid}
+			</if>
+			<if test="fid != null and fid !=''">
+				and fx2id=#{fid}
+			</if>
+			<if test="yytime != null">
+				and yytime=#{yytime}
+			</if>
+			<if test="status != null and status !=''">
+				and status=#{status}
+			</if>
+			<if test="ispay != null and ispay !=''">
+				and ispay=#{ispay}
+			</if>
+			<if test="studio != null and studio !=''">
+				and studio=#{studio}
+			</if>
+		</where>
+	</select>
+
+	<!-- 非主键条件查询 Select -->
+	<select id="findCountByData" resultType="java.lang.Integer">
+		SELECT COUNT(rentid)
+		FROM fx_seehouse GROUP BY yytime
+	</select>
+
+	<!-- 非主键条件查询 Select -->
+	<select id="selectByUidSeeRentIs" resultType="java.lang.Integer"
+		parameterType="com.zhanwkj.fx2.utils.Query">
+		select count(id)
+		from
+		fx_seehouse
+		where uid=#{uid} and rentid=#{rid}
+
+	</select>
+	
+	<!-- 统计某一用户id下的以预约时间分组的组数 -->
+	 <select id="countYytime" resultType="java.lang.Integer" parameterType="com.zhanwkj.fx2.utils.Query">
+	 	select count(yytime) 
+	 	from 
+	 	fx_seehouse
+	 	where uid=#{uid}
+ 	</select>
+ 	<!-- 统计某一用户id+预约时间下的以蜂小二分组的组数 -->
+	 <select id="countFx2id" resultType="java.lang.Integer" parameterType="com.zhanwkj.fx2.utils.Query">
+	 	select count(fx2id) 
+	 	from 
+	 	fx_seehouse
+	 	where uid=#{uid} and yytime=#{yytime}
+ 	</select>
+ 	<!-- 统计某一用户id+预约时间+蜂小二id下的以房源分组的组数 -->
+	 <select id="countRentid" resultType="java.lang.Integer" parameterType="com.zhanwkj.fx2.utils.Query">
+	 	select count(rentid) 
+	 	from 
+	 	fx_seehouse
+	 	where uid=#{uid} and yytime=#{yytime} and fx2id=#{fid}
+ 	</select>
+ 	<!-- 去重复查询预约时间组数 -->
+ 	<select id="getDistinctYytime" resultType="java.lang.String" parameterType="com.zhanwkj.fx2.utils.Query">
+ 		select distinct  yytime 
+ 		from 
+ 		fx_seehouse 
+ 		where uid=#{uid}
+ 	</select>
+ 	<!-- 去重复查询蜂小二组数 -->
+ 	<select id="getDistinctFx2id" resultType="java.lang.Integer" parameterType="com.zhanwkj.fx2.utils.Query">
+ 		select distinct  fx2id 
+ 		from 
+ 		fx_seehouse 
+ 		where uid=#{uid} and yytime=#{yytime}
+ 	</select>
+ 	<!-- 去重复查询房源组数 -->
+ 	<select id="getDistinctRentid" resultType="java.lang.Integer" parameterType="com.zhanwkj.fx2.utils.Query">
+ 		select distinct  rentid 
+ 		from 
+ 		fx_seehouse 
+ 		where uid=#{uid} and yytime=#{yytime} and fx2id=#{fid}
+ 	</select>
+ 	
+ 	<!-- 服务周期查询逻辑 -->
+ 	<select id="selectService" resultType="java.lang.Integer" parameterType="com.zhanwkj.fx2.utils.Query">
+ 		select max(id) 
+ 		from 
+ 		fx_seehouse 
+ 		where ispay=#{ispay} 
+ 	</select>
+ 	
+ 	<!-- 统计某一用户带看次数 -->
+	 <select id="countSeenum" resultType="java.lang.Integer" parameterType="com.zhanwkj.fx2.utils.Query">
+	 	select sum(seenum) 
+	 	from 
+	 	fx_seehouse
+	 	where uid=#{uid}
+ 	</select>
+ 	
+ 	<!-- 去重复查询预约时间组数 -->
+ 	<select id="getDistinctFxYytime" resultType="java.lang.String" parameterType="com.zhanwkj.fx2.utils.Query">
+ 		select distinct  yytime 
+ 		from 
+ 		fx_seehouse 
+ 		where fx2id=#{fid}
+ 	</select>
+ 	<!-- 去重复查询用户组数 -->
+ 	<select id="getDistinctFxUid" resultType="java.lang.Integer" parameterType="com.zhanwkj.fx2.utils.Query">
+ 		select distinct  uid 
+ 		from 
+ 		fx_seehouse 
+ 		where fx2id=#{fid} and yytime=#{yytime}
+ 	</select>
+ 	<!-- 去重复查询房源组数 -->
+ 	<select id="getDistinctFxRentid" resultType="java.lang.Integer" parameterType="com.zhanwkj.fx2.utils.Query">
+ 		select distinct  rentid 
+ 		from 
+ 		fx_seehouse 
+ 		where fx2id=#{fid} and yytime=#{yytime} and uid=#{uid}
+ 	</select>
+ 	
+ 	
+ 	<!-- 根据用户id和预约时间查询蜂小二 -->
+ 	<select id="getFxidByUidandYytime" resultType="java.lang.Integer" parameterType="com.zhanwkj.fx2.utils.Query">
+ 		select fx2id 
+ 		from 
+ 		fx_seehouse 
+ 		where uid=#{uid} and yytime=#{yytime}
+ 	</select>
+ 	<!-- 根据蜂小二id和预约时间查询用户 -->
+ 	<select id="getUidByFx2idandYytime" resultType="java.lang.Integer" parameterType="com.zhanwkj.fx2.utils.Query">
+ 		select uid 
+ 		from 
+ 		fx_seehouse 
+ 		where fx2id=#{fid} and yytime=#{yytime}
+ 	</select>
+ 	<!-- 根据当前用户id，预约时间，蜂小二id查询房源id组 -->
+ 	<select id="getRentidByFYU" resultType="java.lang.Integer" parameterType="com.zhanwkj.fx2.utils.Query">
+ 		select rentid 
+ 		from 
+ 		fx_seehouse 
+ 		where fx2id=#{fid} and yytime=#{yytime} and uid=#{uid}
+ 	</select>
+</mapper>

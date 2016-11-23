@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <title>我的房源</title>
+    <link rel="stylesheet" type="text/css" href="../../Style/css/frozen.css" />
+    <link rel="stylesheet" type="text/css" href="../../Style/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../Style/css/fxe.css" />
+    <link rel="stylesheet" type="text/css" href="../../Style/css/page.css" />
+    <link rel="stylesheet" type="text/css" href="../../Style/css/demo.css" />
+    <link rel="stylesheet" type="text/css" href="../../Style/css/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../Style/css/test.css" />
+    <link rel="stylesheet" type="text/css" href="../../Style/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="../../Style/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../../Style/css/index.css" />
+
+    <script type="text/javascript" src="../../Style/js/jquery.js"></script>
+    <script src="../../Style/js/modernizr.custom.js"></script>
+    <script src="../../Style/js/zepto.js"></script>
+    <script src="../../Style/js/dropload.min.js"></script>
+</head>
+
+<body style="font-family:'Microsoft YaHei'">
+<header class="header">
+    <aside>
+        <ul class="f_aside_items">
+            <li><a href="#">免佣金</a></li>
+            <li><a href="#">免中介费</a></li>
+            <li><a href="#">快租不断租</a></li>
+        </ul>
+    </aside>
+    <h1><a href="index.html" title="蜂小二快租_新浪移动" class="f_logo"></a></h1>
+</header>
+
+<section>
+    <div class="tabs tabs-style-circlefill">
+        <nav>
+            <ul>
+                <li style="width: 33.3%">
+                    <a href="#section-circlefill-1" class="row">
+                        <div class="col-sm-3 col-sm-offset-1 col-xs-3 col-xs-offset-1">
+                            <i class="fa fa-home icon_font" style="font-size:36px"></i>
+                        </div>
+                        <div class="col-sm-4 col-sm-offset-1 col-xs-4 col-xs-offset-1">
+                            <span style="font-size:21px;margin-top: 7px;display: block">住宅</span>
+                        </div>
+                    </a>
+                </li>
+                <li style="width: 33.3%">
+                    <a href="#section-circlefill-2" class="row">
+                        <div class="col-sm-3 col-sm-offset-1 col-xs-3 col-xs-offset-1">
+                            <i class="fa fa-university icon_font" style="font-size:28px"></i>
+                        </div>
+                        <div class="col-sm-4 col-sm-offset-1 col-xs-4 col-xs-offset-1">
+                            <span style="font-size:21px;margin-top: 7px;display: block">办公</span>
+                        </div>
+                    </a>
+                </li>
+                <li style="width: 33.3%">
+                    <a href="#section-circlefill-3" class="row">
+                        <div class="col-sm-3 col-sm-offset-1 col-xs-3 col-xs-offset-1">
+                            <i class="fa fa-building icon_font" style="font-size:30px"></i>
+                        </div>
+                        <div class="col-sm-4 col-sm-offset-1 col-xs-4 col-xs-offset-1">
+                            <span style="font-size:21px;margin-top: 7px;display: block">商铺</span>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="content-wrap">
+            <section id="section-circle-fill-1" class="page-list">
+                <div class="blank1"></div>
+                <div class="fenggexian1">
+                    <aside class="th_td">
+                        <span class="fr">
+                            <a class="bRed" href="#">下 架</a><a class="bYellow" href="#">上 架</a>
+                            <a class="bGreen" href="/">新增一套</a>
+                        </span>
+                        <h3 style="text-align: left">已发布的房源 （2）</h3>
+                    </aside>
+                    <ul class="carditems" style="padding: 0;margin-bottom: 30px;">
+                        <volist name='list' id='data'>
+                            <div class="ui-form">
+                                <ul class="ui-list ui-list-text">
+                                    <li class="ui-border-t">
+                                        <label class="ui-checkbox ui-checkbox-s">
+                                            <input type="checkbox" name="checkbox" style="float: left;margin-top: 35px"/>
+                                            <div class="carditems_dt"><img src="../../Style/img/list_img.jpg"></div>
+                                            <div class="carditems_dd">
+                                                <h3>
+                                                    <span class="h3">康家知本大厦</span>
+                                                    <span class="ad_deposit"><em>托&nbsp;管</em></span>
+                                                </h3>
+                                                <h4>
+                                                    <span class="h4">2室1厅 |&nbsp;99m²&nbsp;| 6层/24层</span>
+                                                    <span class="ad_price"><B>2400</B>元/月</span>
+                                                </h4>
+                                                <p>
+                                                    <!--<span class="rbox6 bGreen" style="font-size: 12px">随时住</span>-->
+                                                    <!--<span class="rbox6 bYellow" style="font-size: 12px;margin-left: 15px">赠送搬家</span>-->
+                                                    <span class="ad_collect">已28 人收藏</span>
+                                                </p>
+                                            </div>
+                                        </label>
+                                    </li>
+                                    <li class="ui-border-t">
+                                        <label class="ui-checkbox ui-checkbox-s">
+                                            <input type="checkbox" name="checkbox" style="float: left;margin-top: 35px"/>
+                                            <div class="carditems_dt"><img src="../../Style/img/list_img.jpg"></div>
+                                            <div class="carditems_dd">
+                                                <h3>
+                                                    <span class="h3">康家知本大厦</span>
+                                                    <span class="ad_deposit"><em>托&nbsp;管</em></span>
+                                                </h3>
+                                                <h4>
+                                                    <span class="h4">2室1厅 |&nbsp;99m²&nbsp;| 6层/24层</span>
+                                                    <span class="ad_price"><B>2400</B>元/月</span>
+                                                </h4>
+                                                <p>
+                                                    <!--<span class="rbox6 bGreen" style="font-size: 12px">随时住</span>-->
+                                                    <!--<span class="rbox6 bYellow" style="font-size: 12px;margin-left: 15px">赠送搬家</span>-->
+                                                    <span class="ad_collect">已28 人收藏</span>
+                                                </p>
+                                            </div>
+                                        </label>
+                                    </li>
+                                </ul>
+                            </div>
+                        </volist>
+                    </ul>
+                    <aside class="th_td">
+                        <h3 style="text-align: left">发布房源小提示</h3>
+                    </aside>
+                    <ul class="dopeitems" style="padding: 0 15px">
+                        <li style="padding: 10px">
+                            <h4>怎样添加【随时住】绿标？</h4>
+                            <p style="color: #4a4a4b;text-align: left">随时住绿标是您发布房源时选择的入住时间生成的，蜂小二房管家的快租平台定义您的出租房空房随时可入住，如您的出租房为正在出租，则可根据合同终止日填写入住时间，提前将您的出租房放置平台，避免短租；</p>
+                        </li>
+                        <li style="padding: 10px">
+                            <h4>托管的标志是啥意思，怎样点亮？</h4>
+                            <p style="color: #4a4a4b;text-align: left">蜂小二房管家提供托管服务，即帮助房东管理钥匙，自助安排看房，租期临近将房屋出租信息自动上架、并在各大信息平台广播，最大限度保证您的出租房快租不断租。</p>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+            <section id="section-circle-fill-2 page-widget">
+                <div class="blank1"></div>
+                <div class="fenggexian1">
+                    <aside class="th_td">
+                        <span class="fr">
+                            <a class="bRed" href="#">下 架</a><a class="bYellow" href="#">上 架</a>
+                            <a class="bGreen" href="/">新增一套</a>
+                        </span>
+                        <h3 style="text-align: left">已发布的房源 （2）</h3>
+                    </aside>
+                    <ul class="carditems" style="padding: 0;margin-bottom: 30px;">
+                        <volist name='list' id='data'>
+                            <div class="ui-form">
+                                <ul class="ui-list ui-list-text">
+                                    <li class="ui-border-t">
+                                        <label class="ui-checkbox ui-checkbox-s">
+                                            <input type="checkbox" name="checkbox" style="float: left;margin-top: 35px"/>
+                                            <div class="carditems_dt"><img src="../../Style/img/list_img.jpg"></div>
+                                            <div class="carditems_dd">
+                                                <h3>
+                                                    <span class="h3">康家知本大厦</span>
+                                                    <span class="ad_deposit"><em>托&nbsp;管</em></span>
+                                                </h3>
+                                                <h4>
+                                                    <span class="h4">2室1厅 |&nbsp;99m²&nbsp;| 6层/24层</span>
+                                                    <span class="ad_price"><B>2400</B>元/月</span>
+                                                </h4>
+                                                <p>
+                                                    <!--<span class="rbox6 bGreen" style="font-size: 12px">随时住</span>-->
+                                                    <!--<span class="rbox6 bYellow" style="font-size: 12px;margin-left: 15px">赠送搬家</span>-->
+                                                    <span class="ad_collect">已28 人收藏</span>
+                                                </p>
+                                            </div>
+                                        </label>
+                                    </li>
+                                    <li class="ui-border-t">
+                                        <label class="ui-checkbox ui-checkbox-s">
+                                            <input type="checkbox" name="checkbox" style="float: left;margin-top: 35px"/>
+                                            <div class="carditems_dt"><img src="../../Style/img/list_img.jpg"></div>
+                                            <div class="carditems_dd">
+                                                <h3>
+                                                    <span class="h3">康家知本大厦</span>
+                                                    <span class="ad_deposit"><em>托&nbsp;管</em></span>
+                                                </h3>
+                                                <h4>
+                                                    <span class="h4">2室1厅 |&nbsp;99m²&nbsp;| 6层/24层</span>
+                                                    <span class="ad_price"><B>2400</B>元/月</span>
+                                                </h4>
+                                                <p>
+                                                    <!--<span class="rbox6 bGreen" style="font-size: 12px">随时住</span>-->
+                                                    <!--<span class="rbox6 bYellow" style="font-size: 12px;margin-left: 15px">赠送搬家</span>-->
+                                                    <span class="ad_collect">已28 人收藏</span>
+                                                </p>
+                                            </div>
+                                        </label>
+                                    </li>
+                                </ul>
+                            </div>
+                        </volist>
+                    </ul>
+                    <aside class="th_td">
+                        <h3 style="text-align: left">发布房源小提示</h3>
+                    </aside>
+                    <ul class="dopeitems" style="padding: 0 15px">
+                        <li style="padding: 10px">
+                            <h4>怎样添加【随时住】绿标？</h4>
+                            <p style="color: #4a4a4b;text-align: left">随时住绿标是您发布房源时选择的入住时间生成的，蜂小二房管家的快租平台定义您的出租房空房随时可入住，如您的出租房为正在出租，则可根据合同终止日填写入住时间，提前将您的出租房放置平台，避免短租；</p>
+                        </li>
+                        <li style="padding: 10px">
+                            <h4>托管的标志是啥意思，怎样点亮？</h4>
+                            <p style="color: #4a4a4b;text-align: left">蜂小二房管家提供托管服务，即帮助房东管理钥匙，自助安排看房，租期临近将房屋出租信息自动上架、并在各大信息平台广播，最大限度保证您的出租房快租不断租。</p>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+            <section id="section-circle-fill-3 page-widget">
+                <div class="blank1"></div>
+                <div class="fenggexian1">
+                    <aside class="th_td">
+                        <span class="fr">
+                            <a class="bRed" href="#">下 架</a><a class="bYellow" href="#">上 架</a>
+                            <a class="bGreen" href="/">新增一套</a>
+                        </span>
+                        <h3 style="text-align: left">已发布的房源 （2）</h3>
+                    </aside>
+                    <ul class="carditems" style="padding: 0;margin-bottom: 30px;">
+                        <volist name='list' id='data'>
+                            <div class="ui-form">
+                                <ul class="ui-list ui-list-text">
+                                    <li class="ui-border-t">
+                                        <label class="ui-checkbox ui-checkbox-s">
+                                            <input type="checkbox" name="checkbox" style="float: left;margin-top: 35px"/>
+                                            <div class="carditems_dt"><img src="../../Style/img/list_img.jpg"></div>
+                                            <div class="carditems_dd">
+                                                <h3>
+                                                    <span class="h3">康家知本大厦</span>
+                                                    <span class="ad_deposit"><em>托&nbsp;管</em></span>
+                                                </h3>
+                                                <h4>
+                                                    <span class="h4">2室1厅 |&nbsp;99m²&nbsp;| 6层/24层</span>
+                                                    <span class="ad_price"><B>2400</B>元/月</span>
+                                                </h4>
+                                                <p>
+                                                    <!--<span class="rbox6 bGreen" style="font-size: 12px">随时住</span>-->
+                                                    <!--<span class="rbox6 bYellow" style="font-size: 12px;margin-left: 15px">赠送搬家</span>-->
+                                                    <span class="ad_collect">已28 人收藏</span>
+                                                </p>
+                                            </div>
+                                        </label>
+                                    </li>
+                                    <li class="ui-border-t">
+                                        <label class="ui-checkbox ui-checkbox-s">
+                                            <input type="checkbox" name="checkbox" style="float: left;margin-top: 35px"/>
+                                            <div class="carditems_dt"><img src="../../Style/img/list_img.jpg"></div>
+                                            <div class="carditems_dd">
+                                                <h3>
+                                                    <span class="h3">康家知本大厦</span>
+                                                    <span class="ad_deposit"><em>托&nbsp;管</em></span>
+                                                </h3>
+                                                <h4>
+                                                    <span class="h4">2室1厅 |&nbsp;99m²&nbsp;| 6层/24层</span>
+                                                    <span class="ad_price"><B>2400</B>元/月</span>
+                                                </h4>
+                                                <p>
+                                                    <!--<span class="rbox6 bGreen" style="font-size: 12px">随时住</span>-->
+                                                    <!--<span class="rbox6 bYellow" style="font-size: 12px;margin-left: 15px">赠送搬家</span>-->
+                                                    <span class="ad_collect">已28 人收藏</span>
+                                                </p>
+                                            </div>
+                                        </label>
+                                    </li>
+                                </ul>
+                            </div>
+                        </volist>
+                    </ul>
+                    <aside class="th_td">
+                        <h3 style="text-align: left">发布房源小提示</h3>
+                    </aside>
+                    <ul class="dopeitems" style="padding: 0 15px">
+                        <li style="padding: 10px">
+                            <h4>怎样添加【随时住】绿标？</h4>
+                            <p style="color: #4a4a4b;text-align: left">随时住绿标是您发布房源时选择的入住时间生成的，蜂小二房管家的快租平台定义您的出租房空房随时可入住，如您的出租房为正在出租，则可根据合同终止日填写入住时间，提前将您的出租房放置平台，避免短租；</p>
+                        </li>
+                        <li style="padding: 10px">
+                            <h4>托管的标志是啥意思，怎样点亮？</h4>
+                            <p style="color: #4a4a4b;text-align: left">蜂小二房管家提供托管服务，即帮助房东管理钥匙，自助安排看房，租期临近将房屋出租信息自动上架、并在各大信息平台广播，最大限度保证您的出租房快租不断租。</p>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+        </div><!-- /content -->
+    </div><!-- /tabs -->
+</section>
+
+<!--底下的固定导航-->
+
+<div class="visible"></div>
+<input type="hidden" id="get_p" value="2">
+
+<script src="../../Style/js/cbpFWTabs.js"></script>
+<script>
+    (function() {
+        [].slice.call( document.querySelectorAll( '.tabs' ) ).forEach( function( el ) {
+            new CBPFWTabs( el );
+        });
+    })();
+</script>
+
+
+</body>
+</html>

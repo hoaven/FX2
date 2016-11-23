@@ -1,0 +1,18 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>快租房平台首页</title>
+</head>
+<body>
+	
+	
+	<center>
+	<img src="../Style/img/load.gif"><br>
+	<p>页面加载中......</p>
+</center>
+</body>
+</html>

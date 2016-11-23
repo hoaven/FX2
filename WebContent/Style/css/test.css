@@ -1,0 +1,41 @@
+body{
+    width: 100%;
+}
+
+/*.tabs i{*/
+    /*color: #07c325;*/
+/*}*/
+
+.tabs nav{
+    /*margin: 10px 0;*/
+}
+
+nav ul li{
+    border: 1px solid #ccc;
+    padding: 8px 0;
+}
+
+nav ul li a span{
+    font-weight: lighter;
+    color: #74777b;
+    font-size: 21px;
+    margin-top: 3px;
+}
+
+nav ul li a i{
+    color: #74777b;
+}
+
+.tab-current a span,.tab-current a i{
+    color: #07c325;
+}
+
+.cardTab i{
+    color: #999;
+}
+
+.new_price{
+    float: left;
+    text-align: left;
+    color: #292929;
+}

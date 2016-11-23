@@ -1,0 +1,32 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"
+	import="com.zhanwkj.fx2.model.*,com.zhanwkj.fx2.constant.*,java.util.*"%>
+<%
+	RentHouse rentHouse = (RentHouse) session.getAttribute("rrhouse");
+%>
+<script type="text/javascript">
+	function checkfy(){
+		var houseid = document.getElementById("houseid").value;
+			$.post(getRootPath() + "/Check/flinshCheck.do", {
+				houseid:houseid
+			}, function(data) {
+				if (data == "true") {
+					alert("审核成功!");
+				} else if (data == "false") {
+					alert("对不起,该房源已被其他管理员审核！");//弹出提示
+					return false;
+				}
+			});
+	}
+</script>
+<br/>
+<br />
+<div class="foot_button">
+<input type="hidden" name="houseid" id="houseid" value="<%=rentHouse.getId() %>"/>
+	<input name="button" type="button" id="colllected" class="sh_button flinshfy" onclick="checkfy()"
+			style="color: #fff; text-align: center; float: right; background-color: red; width: 49.5%;" value="审核">
+<form action="${pageContext.request.contextPath }/Check/updateCheck.do?houseid=<%=rentHouse.getId() %>" method="POST">
+	<input name="button" type="submit" id="colllected" class="sh_button updatefy"
+			style="color: #fff; text-align: center; float: right; background-color: red; width: 49.5%;" value="修改房源信息">
+</form>
+</div>
